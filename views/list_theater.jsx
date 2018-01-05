@@ -14,7 +14,7 @@ class ListTheater extends React.Component {
                 <h1>
                   info theater
                 </h1>
-                Name: <a href={"/theater/"+theater._id}>{theater.name}</a><br/>
+                Name: <a href={"/"+this.props.admin+"theater/"+theater._id}>{theater.name}</a><br/>
                 Andress: {theater.andress}<br/>
               </div>
             )
@@ -24,5 +24,9 @@ class ListTheater extends React.Component {
     );
   }
 }
+
+ListTheater.defaultProps = {
+  admin:'',
+};
 
 module.exports = ListTheater;

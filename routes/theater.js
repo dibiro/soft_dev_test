@@ -21,8 +21,7 @@ router.route('/add_move/:theater_id')
             theater.save(function(err) {
                 if (err)
                     res.send(err);
-
-                res.json({ message: 'theater add move!' });
+                res.redirect('/admin_theater/' + req.params.theater_id);
             });
 
         });
@@ -44,8 +43,7 @@ router.route('/remove_move/:theater_id')
             theater.save(function(err) {
                 if (err)
                     res.send(err);
-
-                res.json({ message: 'theater add move!' });
+                res.redirect('/admin_theater/' + req.params.theater_id);
             });
 
         });
@@ -65,8 +63,7 @@ router.route('/')
         theater.save(function(err) {
             if (err)
                 res.send(err);
-
-            res.json({ message: 'theater created!' });
+            res.redirect('/admin_theater/' + theater.id);
         });
 
     })

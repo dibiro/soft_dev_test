@@ -36,6 +36,17 @@ router.get('/theater/:theater_id', function(req, res, next) {
       });
   });
 });
+router.get('/admin_theater/:theater_id', function(req, res, next) {
+  Theater.findById(req.params.theater_id).populate('moves').exec( function(err, theater) {
+      if (err)
+          res.send(err);
+      Move.find(function(err, moves) {
+          if (err)
+              res.send(err);
+          res.render('theater', { name: 'Leopoldo', title: 'Theater: '+theater.name, is_admin:true, theater:theater, moves:moves });
+      });
+  });
+});
 router.get('/list_move', function(req, res, next) {
   Move.find(function(err, moves) {
       if (err)
@@ -50,6 +61,14 @@ router.get('/list_theater', function(req, res, next) {
           res.send(err);
 
       res.render('list_theater', { name: 'Leopoldo', title: 'List Theaters', theaters:theaters });
+  });
+});
+router.get('/admin_list_theater', function(req, res, next) {
+  Theater.find(function(err, theaters) {
+      if (err)
+          res.send(err);
+
+      res.render('list_theater', { name: 'Leopoldo', title: 'List Theaters', admin:'admin_', theaters:theaters });
   });
 });
 

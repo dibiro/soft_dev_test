@@ -24,7 +24,14 @@ class Theater extends React.Component {
                 </h5>
                 Name: <a href={"/move/"+move._id}>{move.name}</a><br/>
                 Language: {move.language}<br/>
-                
+                Release Date: {move.release_date ? move.release_date.toDateString() : ''}<br/>
+                { 
+                  this.props.is_admin &&
+                  <form method="POST" action={"/api/theater/remove_move/"+this.props.theater._id} > 
+                    <input type="hidden" name="move_id" value={move._id} /><br/>
+                    <input type="submit" value="Remove" />
+                  </form>
+                }
               </div>
             )
           )
@@ -47,6 +54,11 @@ class Theater extends React.Component {
                         </h5>
                         Name: <a href={"/move/"+move._id}>{move.name}</a><br/>
                         Language: {move.language}<br/>
+                        Release Date: {move.release_date ? move.release_date.toDateString() : ''}<br/>
+                        <form method="POST" action={"/api/theater/add_move/"+this.props.theater._id} > 
+                          <input type="hidden" name="move_id" value={move._id} /><br/>
+                          <input type="submit" value="Add" />
+                        </form>
                       </div>
                     }
 
