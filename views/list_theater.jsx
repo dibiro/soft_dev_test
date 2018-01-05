@@ -10,12 +10,14 @@ class ListTheater extends React.Component {
           this.props.theaters &&
           this.props.theaters.map(
             (theater, index) => (
-              <div>
-                <h1>
-                  info theater
-                </h1>
-                Name: <a href={"/"+this.props.admin+"theater/"+theater._id}>{theater.name}</a><br/>
-                Andress: {theater.andress}<br/>
+              <div className="card-slim">
+                <div className="card-header">
+                  <p>info theater</p>
+                </div>
+                <div className="card-description">
+                  <p>Name: <a href={"/"+this.props.admin+"theater/"+theater._id}>{theater.name}</a></p>
+                  <p> Andress: {theater.andress}</p>
+                </div>
               </div>
             )
           )
