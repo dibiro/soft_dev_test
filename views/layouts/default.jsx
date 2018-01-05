@@ -30,6 +30,7 @@ class DefaultLayout extends React.Component {
               )
             }
           </div>
+          <link rel="stylesheet" href="/stylesheets/style.css" />
         </head>
         <body>
           <h1>

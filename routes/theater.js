@@ -4,6 +4,7 @@ var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/videoclubdb');
 
 var Theater       = require('./../app/models/theater');
+var Move       = require('./../app/models/move');
 
 
 router.route('/add_move/:theater_id')
@@ -15,14 +16,18 @@ router.route('/add_move/:theater_id')
 
             if (err)
                 res.send(err);
-            theater.moves.push(req.body.move_id);
-
-            // save the move and check for errors
-            theater.save(function(err) {
+            Move.findById(req.body.move_id, function(err, move) {
                 if (err)
                     res.send(err);
-                res.redirect('/admin_theater/' + req.params.theater_id);
+                theater.moves.push(move);
+                // save the move and check for errors
+                theater.save(function(err) {
+                    if (err)
+                        res.send(err);
+                    res.redirect('/admin_theater/' + req.params.theater_id);
+                });
             });
+
 
         });
 
@@ -37,15 +42,17 @@ router.route('/remove_move/:theater_id')
 
             if (err)
                 res.send(err);
-            theater.moves.remove(req.body.move_id);
-
-            // save the move and check for errors
-            theater.save(function(err) {
+            Move.findById(req.body.move_id, function(err, move) {
                 if (err)
                     res.send(err);
-                res.redirect('/admin_theater/' + req.params.theater_id);
+                theater.moves.remove(move);
+                // save the move and check for errors
+                theater.save(function(err) {
+                    if (err)
+                        res.send(err);
+                    res.redirect('/admin_theater/' + req.params.theater_id);
+                });
             });
-
         });
 
     });
