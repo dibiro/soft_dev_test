@@ -27,8 +27,7 @@ router.route('/')
         move.save(function(err) {
             if (err)
                 res.send(err);
-
-            res.json({ message: 'move created!', id:move._id });
+            res.redirect('/move/' + move.id);
         });
 
     })

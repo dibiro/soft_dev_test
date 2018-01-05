@@ -7,21 +7,36 @@ class DefaultLayout extends React.Component {
         <head>
           <title>{this.props.title}</title>
           <div>
-            <a href="/admin">admin</a>
-            <a href="/">Home</a>
             <div>
-              { 
-                this.props.links &&
-                this.props.links.map(
-                  (link, index) => (
-                    <a href={"/"+link.link}>{link.label}</a>
-                  )
-                )
-              }
+              <a href="/admin">admin</a>
             </div>
+            <div>
+              <a href="/">Home</a>
+            </div>
+            <div>
+              <a href="/list_move">List Move</a>
+            </div>
+            <div>
+              <a href="/list_theater">List Theater</a>
+            </div>
+            { 
+              this.props.links &&
+              this.props.links.map(
+                (link, index) => (
+                  <div>
+                    <a href={"/"+link.link}>{link.label}</a>
+                  </div>
+                )
+              )
+            }
           </div>
         </head>
-        <body>{this.props.children}</body>
+        <body>
+          <h1>
+            {this.props.title}
+          </h1>
+          {this.props.children}
+        </body>
       </html>
     );
   }

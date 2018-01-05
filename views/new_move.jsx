@@ -41,11 +41,12 @@ class NewMove extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div>
-          Name: <input type="text" name="name" value={this.state.name} onChange={this.nameChange} /><br/>
-          language: <input type="text" name="language" value={this.state.language} onChange={this.lenguageChange} /><br/>
-          <button onClick={this.handleSubmit} type="button">Submit</button>
-        </div>
+        <form method="POST" action="/api/moves/" > 
+          Name: <input require type="text" name="name" /><br/>
+          language: <input require type="text" name="language" /><br/>
+          release date: <input require type="date" name="release_date" /><br/>
+          <input type="submit" value="Submit" />
+        </form>
       </DefaultLayout>
     );
   }

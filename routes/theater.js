@@ -11,7 +11,7 @@ router.route('/add_move/:theater_id')
     // create a bear (accessed at POST http://localhost:8080/api/bears)
     .post(function(req, res) {
 
-        Theater.findById(req.params.theater_id, function(err, theater) {
+        Theater.findById(req.params.theater_id).populate('moves').exec( function(err, theater) {
 
             if (err)
                 res.send(err);
@@ -34,7 +34,7 @@ router.route('/remove_move/:theater_id')
     // create a bear (accessed at POST http://localhost:8080/api/bears)
     .post(function(req, res) {
 
-        Theater.findById(req.params.theater_id, function(err, theater) {
+        Theater.findById(req.params.theater_id).populate('moves').exec( function(err, theater) {
 
             if (err)
                 res.send(err);
@@ -71,7 +71,7 @@ router.route('/')
 
     })
     .get(function(req, res) {
-        Theater.find(function(err, theaters) {
+        Theater.find().populate('moves').exec(function(err, theaters) {
             if (err)
                 res.send(err);
 
@@ -81,7 +81,7 @@ router.route('/')
 router.route('/:theater_id')
 
     .get(function(req, res) {
-        Theater.findById(req.params.theater_id, function(err, theater) {
+        Theater.findById(req.params.theater_id).populate('moves').exec( function(err, theater) {
             if (err)
                 res.send(err);
             res.json(theater);
