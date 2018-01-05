@@ -1,14 +1,14 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-class Home extends React.Component {
+class Admin extends React.Component {
   render() {
     return (
-      <DefaultLayout title={this.props.title}>
+      <DefaultLayout title={this.props.title} links={[{link:'new_move', label:'New Move'}]}>
         <div>Hello {this.props.name}</div>
       </DefaultLayout>
     );
   }
 }
 
-module.exports = Home;
+module.exports = Admin;

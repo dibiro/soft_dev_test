@@ -28,7 +28,7 @@ router.route('/')
             if (err)
                 res.send(err);
 
-            res.json({ message: 'move created!' });
+            res.json({ message: 'move created!', id:move._id });
         });
 
     })
@@ -64,7 +64,7 @@ router.route('/:move_id')
                 if (err)
                     res.send(err);
 
-                res.json({ message: 'Bear updated!' });
+                res.json({ message: 'Move updated!' });
             });
 
         });
